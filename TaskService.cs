@@ -37,15 +37,27 @@ namespace tasklist
 
             using var conn = new NpgsqlConnection(connString);
             conn.Open();
-            using (var cmd = new NpgsqlCommand("SELECT id, title, done, description FROM tasklist", conn))
+            using (var cmd = new NpgsqlCommand("SELECT id, title, done, do_date, description FROM tasklist", conn))
             using (var reader = cmd.ExecuteReader())
                 while (reader.Read())
                 {
                     var title = reader.GetString(1);
                     var done = reader.GetBoolean(2);
                     char doneFlage = done ? 'x' : ' ';
+                    int id = reader.GetInt32(0);
+                    string date;
+                    string description = reader.GetString(4);
+                    if (reader.IsDBNull(3))
+                    {
+                        date = "No date";
+                    }
+                    else
+                    {
+                        date = reader.GetDateTime(3).ToString();
+                    }
+
                     // var desc = reader.GetString(3);                
-                    Console.WriteLine($" - [{doneFlage}] {title} ");
+                    Console.WriteLine($"{id} - \t[{doneFlage}] {title} {date} [{description}]");
                 }
         }
         public static void AddTask(ToDoItem item)
