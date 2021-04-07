@@ -6,12 +6,12 @@ namespace tasklist
 {
     class ToDoTaskService
     {
-        public static void OpenDB()
-        {
-            var connString = "Host=127.0.0.1;Username=to_do_task_app;Password=ivanvoronov;Database=to_do_task";
+        // public static void OpenDB()
+        // {
+        //     var connString = "Host=127.0.0.1;Username=to_do_task_app;Password=ivanvoronov;Database=to_do_task";
 
-            using var conn = new NpgsqlConnection(connString);
-            conn.Open();
+        //     using var conn = new NpgsqlConnection(connString);
+        //     conn.Open();
             // Insert some data
             // using (var cmd = new NpgsqlCommand("INSERT INTO tasklist (title, done) VALUES (@title, false)", conn))
             // {
@@ -30,7 +30,7 @@ namespace tasklist
             //     }
             // You can find more info about the ADO.NET API in the MSDN docs or in many tutorials on the Internet.
             // test
-        }
+        // }
         public static void PrintAllTasks()
         {
             var connString = "Host=127.0.0.1;Username=to_do_task_app;Password=ivanvoronov;Database=to_do_task";
